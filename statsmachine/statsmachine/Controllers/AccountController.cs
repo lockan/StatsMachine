@@ -151,7 +151,13 @@ namespace statsmachine.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    firstname = model.FirstName,
+                    lastname = model.LastName,
+                    faction = model.UserFaction.ToString()
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

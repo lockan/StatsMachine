@@ -177,8 +177,13 @@
     <Compile Include="Migrations\201608310344051_Genesis.Designer.cs">
       <DependentUpon>201608310344051_Genesis.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609010422112_user-name-and-faction.cs" />
+    <Compile Include="Migrations\201609010422112_user-name-and-faction.Designer.cs">
+      <DependentUpon>201609010422112_user-name-and-faction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -254,6 +259,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201608310344051_Genesis.resx">
       <DependentUpon>201608310344051_Genesis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609010422112_user-name-and-faction.resx">
+      <DependentUpon>201609010422112_user-name-and-faction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

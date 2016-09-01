@@ -7,6 +7,7 @@ namespace statsmachine.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<statsmachine.Models.ApplicationDbContext>
     {
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
