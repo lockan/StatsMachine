@@ -156,7 +156,7 @@ namespace statsmachine.Controllers
                     Email = model.Email,
                     firstname = model.FirstName,
                     lastname = model.LastName,
-                    faction = model.UserFaction.ToString()
+                    //faction = model.UserFaction.ToString()
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

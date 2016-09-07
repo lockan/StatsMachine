@@ -90,9 +90,9 @@ namespace statsmachine.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
-        [Display(Name = "Faction")]
-        public Enums.Faction UserFaction { get; set; }
+        //[Required]
+        //[Display(Name = "Faction")]
+        //public Enums.WarmachineFaction UserFaction { get; set; }
 
     }
 

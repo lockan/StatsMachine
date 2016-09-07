@@ -7,7 +7,12 @@ namespace statsmachine.Models
 {
     public class Enums
     {
-        public enum Faction
+        public enum GameTitle
+        {
+            Warmachine
+        }
+
+        public enum WarmachineFaction
         {
             Cygnar,
             Khador,
@@ -22,5 +27,7 @@ namespace statsmachine.Models
             Legion, 
             Minions
         }
+
     }
+
 }

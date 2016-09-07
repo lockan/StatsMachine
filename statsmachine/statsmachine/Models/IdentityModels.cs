@@ -12,7 +12,7 @@ namespace statsmachine.Models
     {
         public string firstname { get; set; }
         public string lastname { get; set; }
-        public string faction { get; set; }
+        //public string avatar { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -34,5 +34,9 @@ namespace statsmachine.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<statsmachine.Models.UserGame> UserGames { get; set; }
+
+        public System.Data.Entity.DbSet<statsmachine.Models.Game> Games { get; set; }
     }
 }

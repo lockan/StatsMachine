@@ -168,8 +168,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserGamesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -181,9 +183,22 @@
     <Compile Include="Migrations\201609010422112_user-name-and-faction.Designer.cs">
       <DependentUpon>201609010422112_user-name-and-faction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609062213413_update-user-table.cs" />
+    <Compile Include="Migrations\201609062213413_update-user-table.Designer.cs">
+      <DependentUpon>201609062213413_update-user-table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609062247063_add-games-and-usergames-tables.cs" />
+    <Compile Include="Migrations\201609062247063_add-games-and-usergames-tables.Designer.cs">
+      <DependentUpon>201609062247063_add-games-and-usergames-tables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609062252070_add-game-model-and-controller.cs" />
+    <Compile Include="Migrations\201609062252070_add-game-model-and-controller.Designer.cs">
+      <DependentUpon>201609062252070_add-game-model-and-controller.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\GameModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,6 +259,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\UserGames\Create.cshtml" />
+    <Content Include="Views\UserGames\Delete.cshtml" />
+    <Content Include="Views\UserGames\Details.cshtml" />
+    <Content Include="Views\UserGames\Edit.cshtml" />
+    <Content Include="Views\UserGames\Index.cshtml" />
+    <Content Include="Views\Games\Create.cshtml" />
+    <Content Include="Views\Games\Delete.cshtml" />
+    <Content Include="Views\Games\Details.cshtml" />
+    <Content Include="Views\Games\Edit.cshtml" />
+    <Content Include="Views\Games\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,6 +287,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609010422112_user-name-and-faction.resx">
       <DependentUpon>201609010422112_user-name-and-faction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609062213413_update-user-table.resx">
+      <DependentUpon>201609062213413_update-user-table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609062247063_add-games-and-usergames-tables.resx">
+      <DependentUpon>201609062247063_add-games-and-usergames-tables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609062252070_add-game-model-and-controller.resx">
+      <DependentUpon>201609062252070_add-game-model-and-controller.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
