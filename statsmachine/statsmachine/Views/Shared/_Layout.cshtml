@@ -31,7 +31,8 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - StatsMachine - A. Lockhart</p>
+            <p>Site &copy; @DateTime.Now.Year - StatsMachine - A. Lockhart</p>
+            <br /> @Html.ActionLink("Legal", "Index", "Legal", new { area = "" });
         </footer>
     </div>
 

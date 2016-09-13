@@ -19,13 +19,17 @@ namespace statsmachine.Models
         [Key]
         [Column(Order = 0)]
         public string userid { get; set; }
+
         [Key]
         [Column(Order = 1)]
         public Guid gameid { get; set; }
+
     }
 
     /*
     public class GameLog.Warmachine { 
+        
+        public string faction { get; set; }
 
     }
     */

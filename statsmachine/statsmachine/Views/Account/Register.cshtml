@@ -41,14 +41,19 @@
             @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
         </div>
     </div>
-    <!-- 
     <div class="form-group">
-        @Html.LabelFor(m => m.UserFaction, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.Avatar, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(m => m.UserFaction, new { @class = "form-control" })
+            @Html.EnumDropDownListFor(m => m.Avatar, new { @class = "form-control", @id = "avatarchoice" })
         </div>
     </div>
-        -->
+    <div class="form-group">
+        @Html.Label("Preview", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10" id="avatar">
+            <!-- image goes here -->
+        </div>
+    </div>
+
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" class="btn btn-default" value="Register" />
@@ -59,3 +64,22 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    $(document).ready( function() {
+        var selectedfaction = $('#avatarchoice option:selected').text().toLowerCase();
+        setAvatarChoice(selectedfaction);
+    }) ;
+
+    $('#avatarchoice').change(function() {
+        var selectedfaction = $('#avatarchoice option:selected').text().toLowerCase();
+        setAvatarChoice(selectedfaction);
+    });
+
+    function setAvatarChoice(selectedfaction) {
+        var imgpath = "/Content/Images/" + selectedfaction + ".png";
+        $('#avatar').html("<img src='" + imgpath + "' />");
+    };
+</script>

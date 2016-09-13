@@ -14,20 +14,19 @@ namespace statsmachine.Models
 
         public enum WarmachineFaction
         {
-            Cygnar,
-            Khador,
-            Protectorate,
-            Cryx,
-            Retribution,
+            Circle,
             Convergence,
-            Mercenaries, 
-            Trollbloods, 
-            Circle, 
-            Skorne, 
-            Legion, 
-            Minions
+            Cryx,
+            Cygnar,
+            Everblight,
+            Khador,
+            Mercenaries,
+            Minions,
+            Protectorate,            
+            Retribution,
+            Skorne,
+            Trollbloods
         }
-
     }
 
 }

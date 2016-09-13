@@ -12,7 +12,7 @@ namespace statsmachine.Models
     {
         public string firstname { get; set; }
         public string lastname { get; set; }
-        //public string avatar { get; set; }
+        public string avatar { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

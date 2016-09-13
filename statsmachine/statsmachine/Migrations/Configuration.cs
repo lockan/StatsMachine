@@ -41,7 +41,8 @@ namespace statsmachine.Migrations
             {
                 UserName = "andrew@test.com",
                 firstname = "andrew",
-                lastname = "lockhart"
+                lastname = "lockhart", 
+                avatar = "Protectorate"
             };
 
             if (!(context.Users.Any(u => u.UserName == "andrew@test.com")))
