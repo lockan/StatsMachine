@@ -35,8 +35,11 @@ namespace statsmachine.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<statsmachine.Models.UserGame> UserGames { get; set; }
+        //public System.Data.Entity.DbSet<statsmachine.Models.ApplicationUser> ApplicationUsers { get; set; }
 
         public System.Data.Entity.DbSet<statsmachine.Models.Game> Games { get; set; }
+
+        public System.Data.Entity.DbSet<statsmachine.Models.UserGame> UserGames { get; set; }
+
     }
 }
