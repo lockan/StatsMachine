@@ -39,21 +39,21 @@ namespace statsmachine.Migrations
             // Seed Users Table with default admin user
             var adminuser = new ApplicationUser
             {
-                UserName = "andrew@test.com",
+                UserName = "lockan@gmail.com",
                 firstname = "andrew",
                 lastname = "lockhart", 
                 avatar = "Protectorate"
             };
 
-            if (!(context.Users.Any(u => u.UserName == "andrew@test.com")))
+            if (!(context.Users.Any(u => u.UserName == "lockan@gmail.com")))
             {
                 userManager.Create(adminuser, "P@ssw0rd");
             }
 
             // Assign default admin to "Admin" and "Organizer" roles
-            if ((context.Users.Any(u => u.UserName == "andrew@test.com")))
+            if ((context.Users.Any(u => u.UserName == "lockan@gmail.com")))
             {
-                var adminid = userManager.FindByName("andrew@test.com").Id;
+                var adminid = userManager.FindByName("lockan@gmail.com").Id;
                 userManager.AddToRole(adminid, "Admin");
                 userManager.AddToRole(adminid, "Organizer");
             }

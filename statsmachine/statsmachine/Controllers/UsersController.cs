@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using statsmachine.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace statsmachine.Controllers
 {
@@ -18,7 +20,37 @@ namespace statsmachine.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            var users = db.Users.ToList();
+
+            List<UserViewModel> userswithroles = new List<UserViewModel>();
+            UserViewModel uvm;
+            foreach (ApplicationUser u in users) {
+                uvm = new UserViewModel();
+                uvm.Id = u.Id;
+                uvm.firstname = u.firstname;
+                uvm.lastname = u.lastname;
+                uvm.avatar = u.avatar;
+                uvm.username = u.UserName;
+
+                string rolestring = "";
+                foreach (var role in userManager.GetRoles(u.Id))
+                {
+                    if (String.IsNullOrEmpty(rolestring)) {
+                        rolestring = String.Concat(rolestring, role.ToString());
+                    }
+                    else
+                    {
+                        rolestring = String.Concat(rolestring, ", " + role.ToString());
+                    }
+                }
+                uvm.roles = rolestring;
+                userswithroles.Add(uvm);
+            }
+
+            return View(userswithroles);
         }
 
         // GET: Users/Details/5

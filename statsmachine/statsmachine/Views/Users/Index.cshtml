@@ -1,4 +1,4 @@
-﻿@model IEnumerable<statsmachine.Models.ApplicationUser>
+﻿@model IEnumerable<statsmachine.Models.UserViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.firstname)
+            @Html.DisplayNameFor(model => model.firstname);
         </th>
         <th>
             @Html.DisplayNameFor(model => model.lastname)
@@ -17,46 +17,16 @@
         <th>
             @Html.DisplayNameFor(model => model.avatar)
         </th>
-<!--
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.DisplayNameFor(model => model.username)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EmailConfirmed)
+            @Html.DisplayNameFor(model => model.roles)
         </th>
-
-        <th>
-            @Html.DisplayNameFor(model => model.PasswordHash)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecurityStamp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LockoutEnabled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AccessFailedCount)
-        </th>
--->
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.firstname)
@@ -66,41 +36,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.avatar)
-        </td>
-<!--
+        </td>      
         <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailConfirmed)
+            @Html.DisplayFor(modelItem => item.username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PasswordHash)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecurityStamp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEndDateUtc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LockoutEnabled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AccessFailedCount)
-        </td>
--->        
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.roles)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
