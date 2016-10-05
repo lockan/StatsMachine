@@ -10,6 +10,6 @@ namespace statsmachine.Models
         public string lastname { get; set; }
         public string avatar { get; set; }
         public string username { get; set; }
-        public string roles { get; set; }
+        public List<string> roles { get; set; }
     }
 }

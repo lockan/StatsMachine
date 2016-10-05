@@ -28,25 +28,7 @@ namespace statsmachine.Controllers
             List<UserViewModel> userswithroles = new List<UserViewModel>();
             UserViewModel uvm;
             foreach (ApplicationUser u in users) {
-                uvm = new UserViewModel();
-                uvm.Id = u.Id;
-                uvm.firstname = u.firstname;
-                uvm.lastname = u.lastname;
-                uvm.avatar = u.avatar;
-                uvm.username = u.UserName;
-
-                string rolestring = "";
-                foreach (var role in userManager.GetRoles(u.Id))
-                {
-                    if (String.IsNullOrEmpty(rolestring)) {
-                        rolestring = String.Concat(rolestring, role.ToString());
-                    }
-                    else
-                    {
-                        rolestring = String.Concat(rolestring, ", " + role.ToString());
-                    }
-                }
-                uvm.roles = rolestring;
+                uvm = GetUserViewModel(u.Id);
                 userswithroles.Add(uvm);
             }
 
@@ -152,6 +134,41 @@ namespace statsmachine.Controllers
             return RedirectToAction("Index");
         }
 
+        // GET: Users/Promote/5
+        public ActionResult Promote(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser applicationUser = db.Users.Find(id);
+            if (applicationUser == null)
+            {
+                return HttpNotFound();
+            }
+
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            List<string> roles = new List<string>();           
+
+            foreach (var role in userManager.GetRoles(id))
+            {
+                roles.Add(role);
+            }
+
+            UserViewModel uvm = GetUserViewModel(applicationUser.Id);
+
+            List<string> allroles = new List<string>();
+            foreach (var r in db.Roles)
+            {
+                allroles.Add(r.Name);
+            }
+            ViewBag.RolesList = allroles;
+
+            return View(uvm);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -159,6 +176,38 @@ namespace statsmachine.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        //HELPER - Return a UserViewModel object for a given ApplicationUser Id
+        private UserViewModel GetUserViewModel(String id) {
+
+            var userStore = new UserStore<ApplicationUser>(db);
+            var userManager = new UserManager<ApplicationUser>(userStore);
+
+            if (id == null)
+            {
+                return null;
+            }
+            ApplicationUser user = db.Users.Find(id);
+            if (user == null)
+            {
+                return null;
+            }
+
+            UserViewModel uvm = new UserViewModel();
+            uvm.Id = user.Id;
+            uvm.firstname = user.firstname;
+            uvm.lastname = user.lastname;
+            uvm.avatar = user.avatar;
+            uvm.username = user.UserName;
+
+            uvm.roles = new List<string>();
+            foreach (var role in userManager.GetRoles(user.Id))
+            {
+                uvm.roles.Add(role);
+            }
+
+            return uvm;
         }
     }
 }

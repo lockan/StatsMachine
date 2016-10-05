@@ -41,9 +41,13 @@
             @Html.DisplayFor(modelItem => item.username)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.roles)
+            @foreach (var role in item.roles)
+            {
+                @Html.DisplayFor(modelItem => role) <span>&nbsp</span>
+            } 
         </td>
         <td>
+            @Html.ActionLink("Promote", "Promote", new { id = item.Id }) |
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })

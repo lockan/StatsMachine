@@ -1,0 +1,53 @@
+﻿@model statsmachine.Models.UserViewModel
+
+@{
+    ViewBag.Title = "Promote";
+}
+
+<h2>Promote</h2>
+
+<h3> User: @Html.DisplayFor(model => model.username)</h3>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <b> Current Roles: </b>
+        <ul>
+            @foreach (var role in Model.roles)
+            {
+                <li>@Html.DisplayFor(model => role)</li>
+            }
+        </ul>
+    </div>
+</div>
+
+<p/>
+<hr/>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <b> Add to Role: </b>
+        @Html.DropDownList(
+        "role",
+        new SelectList(ViewBag.RolesList)
+    )
+    <input type="submit" value="Add" class="btn btn-default" />
+    </div>
+</div>
+
+<p/>
+<hr/>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <b> Remove From Role: </b>
+        @Html.DropDownListFor(model => model.roles,
+        Model.roles.Select(r => new SelectListItem
+        {
+            Text = r,
+            Value = r
+        })
+    )
+    <input type="submit" value="Remove" class="btn btn-default" />
+    </div>
+</div>
+
