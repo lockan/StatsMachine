@@ -134,8 +134,9 @@ namespace statsmachine.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Users/Promote/5
-        public ActionResult Promote(string id)
+        // GET: Users/Roles/5
+        // Handles both add and remove roles. 
+        public ActionResult Roles(string id)
         {
             if (id == null)
             {
@@ -164,9 +165,44 @@ namespace statsmachine.Controllers
             {
                 allroles.Add(r.Name);
             }
-            ViewBag.RolesList = allroles;
+            ViewBag.RolesList = GetAvailableRoles();
 
             return View(uvm);
+        }
+        // POST: Users/Roles/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Roles(ApplicationUser applicationUser)
+        {
+            //This is pretty ugly. I'll need to update this any time a role is added. 
+            // The Split(',')[0] is to handle checkboxes. A checked box returns "true,false" instead of just "true". 
+            List<KeyValuePair<string, string>> rolesList = new List<KeyValuePair<string, string>>();
+            rolesList.Add(new KeyValuePair<string, string>("Admin", Request["Admin"].Split(',')[0]));
+            rolesList.Add(new KeyValuePair<string, string>("Organizer", Request["Organizer"].Split(',')[0]));
+
+            var userstore = new UserStore<ApplicationUser>(db);
+            var usermanager = new UserManager<ApplicationUser>(userstore);
+
+            foreach (KeyValuePair<string,string> kvp in rolesList) {
+                if (kvp.Value == "true")
+                {
+                    if (!usermanager.IsInRole(applicationUser.Id, kvp.Key))
+                    {
+                        usermanager.AddToRole(applicationUser.Id, kvp.Key);
+                    }
+                }
+
+                if (kvp.Value == "false")
+                {
+                    if (usermanager.IsInRole(applicationUser.Id, kvp.Key))
+                    {
+                        usermanager.RemoveFromRole(applicationUser.Id, kvp.Key);
+                    }                        
+                }
+            }
+            db.SaveChanges();
+
+            return RedirectToAction("Index", "Users");
         }
 
         protected override void Dispose(bool disposing)
@@ -208,6 +244,17 @@ namespace statsmachine.Controllers
             }
 
             return uvm;
+        }
+
+        //Helper - Retrieve and return List of all available roles
+        private List<string> GetAvailableRoles()
+        {
+            List<string> allroles = new List<string>();
+            foreach (var r in db.Roles)
+            {
+                allroles.Add(r.Name);
+            }
+            return allroles;
         }
     }
 }

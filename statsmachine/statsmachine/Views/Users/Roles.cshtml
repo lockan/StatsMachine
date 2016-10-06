@@ -1,0 +1,39 @@
+﻿@model statsmachine.Models.UserViewModel
+
+@{
+    ViewBag.Title = "User Roles";
+}
+
+<h2>Promote</h2>
+
+<h3> User: @Html.DisplayFor(model => model.username)</h3>
+
+@using (Html.BeginForm("Roles", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <h4> Edit User Roles: </h4>
+
+    <div class="form-group">
+        @foreach (string role in ViewBag.RolesList)
+        {
+            <div class="row">
+                @Html.Label(role, new { @class = "col-md-2 control-label" })
+                @Html.CheckBox(role, Model.roles.Contains(role), new { @class = "form-control" })
+                <span>&nbsp</span>
+            </div>
+        }
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to Users List", "Index")
+</div>
+
+
