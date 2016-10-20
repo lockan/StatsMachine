@@ -65,21 +65,5 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-
 <script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script>
-    $(document).ready( function() {
-        var selectedfaction = $('#avatarchoice option:selected').text().toLowerCase();
-        setAvatarChoice(selectedfaction);
-    }) ;
-
-    $('#avatarchoice').change(function() {
-        var selectedfaction = $('#avatarchoice option:selected').text().toLowerCase();
-        setAvatarChoice(selectedfaction);
-    });
-
-    function setAvatarChoice(selectedfaction) {
-        var imgpath = "/Content/Images/" + selectedfaction + ".png";
-        $('#avatar').html("<img src='" + imgpath + "' />");
-    };
-</script>
+<script type="text/javascript" src="~/Scripts/Register.js"></script>

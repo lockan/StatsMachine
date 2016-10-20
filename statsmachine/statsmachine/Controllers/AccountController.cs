@@ -455,7 +455,8 @@ namespace statsmachine.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            //return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Main");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

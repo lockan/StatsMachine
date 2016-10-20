@@ -12,6 +12,5 @@ namespace statsmachine.Controllers
         {
             return View();
         }
-
     }
 }
