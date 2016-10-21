@@ -28,7 +28,7 @@ namespace statsmachine.Controllers
             List<UserViewModel> userswithroles = new List<UserViewModel>();
             UserViewModel uvm;
             foreach (ApplicationUser u in users) {
-                uvm = GetUserViewModel(u.Id);
+                uvm = Helpers.GetUserViewModel(u.Id);
                 userswithroles.Add(uvm);
             }
 
@@ -158,14 +158,14 @@ namespace statsmachine.Controllers
                 roles.Add(role);
             }
 
-            UserViewModel uvm = GetUserViewModel(applicationUser.Id);
+            UserViewModel uvm = Helpers.GetUserViewModel(applicationUser.Id);
 
             List<string> allroles = new List<string>();
             foreach (var r in db.Roles)
             {
                 allroles.Add(r.Name);
             }
-            ViewBag.RolesList = GetAvailableRoles();
+            ViewBag.RolesList = Helpers.GetAvailableRoles();
 
             return View(uvm);
         }
@@ -214,47 +214,6 @@ namespace statsmachine.Controllers
             base.Dispose(disposing);
         }
 
-        //HELPER - Return a UserViewModel object for a given ApplicationUser Id
-        private UserViewModel GetUserViewModel(String id) {
-
-            var userStore = new UserStore<ApplicationUser>(db);
-            var userManager = new UserManager<ApplicationUser>(userStore);
-
-            if (id == null)
-            {
-                return null;
-            }
-            ApplicationUser user = db.Users.Find(id);
-            if (user == null)
-            {
-                return null;
-            }
-
-            UserViewModel uvm = new UserViewModel();
-            uvm.Id = user.Id;
-            uvm.firstname = user.firstname;
-            uvm.lastname = user.lastname;
-            uvm.avatar = user.avatar;
-            uvm.username = user.UserName;
-
-            uvm.roles = new List<string>();
-            foreach (var role in userManager.GetRoles(user.Id))
-            {
-                uvm.roles.Add(role);
-            }
-
-            return uvm;
-        }
-
-        //Helper - Retrieve and return List of all available roles
-        private List<string> GetAvailableRoles()
-        {
-            List<string> allroles = new List<string>();
-            foreach (var r in db.Roles)
-            {
-                allroles.Add(r.Name);
-            }
-            return allroles;
-        }
+        
     }
 }

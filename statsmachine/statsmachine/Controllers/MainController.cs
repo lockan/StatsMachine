@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace statsmachine.Controllers
 {
+    [Authorize]
     public class MainController : Controller
     {
 
@@ -17,43 +18,20 @@ namespace statsmachine.Controllers
         // GET: Main
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
-            {
-                UserViewModel currentuser = GetCurrentUserViewModel(User.Identity.GetUserId());
-                Session.Add("UserAvatar", currentuser.avatar);
-                return View(currentuser);
-            } else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+            ApplicationUser sessionuser = db.Users.Find(User.Identity.GetUserId());
+            SetUserSessionData(sessionuser);
+            UserViewModel currentuser = Helpers.GetUserViewModel(sessionuser.Id);
+            return View(currentuser);
         }
 
-        //HELPER - Return a UserViewModel object for the current user
-        private UserViewModel GetCurrentUserViewModel(string userid)
+        private void SetUserSessionData(ApplicationUser sessionuser)
         {
-            var userStore = new UserStore<ApplicationUser>(db);
-            var userManager = new UserManager<ApplicationUser>(userStore);
-                        
-            ApplicationUser user = db.Users.Find(userid);
-            if (user == null)
-            {
-                return null;
-            }
-
-            UserViewModel uvm = new UserViewModel();
-            uvm.Id = user.Id;
-            uvm.firstname = user.firstname;
-            uvm.lastname = user.lastname;
-            uvm.avatar = user.avatar;
-            uvm.username = user.UserName;
-
-            uvm.roles = new List<string>();
-            foreach (var role in userManager.GetRoles(user.Id))
-            {
-                uvm.roles.Add(role);
-            }
-
-            return uvm;
+            //Set session variables
+            Session.Add("UserName", sessionuser.UserName);
+            Session.Add("UserFirstName", sessionuser.firstname);
+            Session.Add("UserLastName", sessionuser.lastname);
+            Session.Add("UserAvatar", sessionuser.avatar);
         }
+
     }
 }

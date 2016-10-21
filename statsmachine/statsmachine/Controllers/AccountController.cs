@@ -397,6 +397,7 @@ namespace statsmachine.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            Session.RemoveAll(); //Clear all session variables
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
