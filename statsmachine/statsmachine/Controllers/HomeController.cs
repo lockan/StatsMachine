@@ -12,5 +12,11 @@ namespace statsmachine.Controllers
         {
             return View();
         }
+
+        // GET: Legal
+        public ActionResult Legal()
+        {
+            return View();
+        }
     }
 }

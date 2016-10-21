@@ -4,19 +4,7 @@
     ViewBag.Title = "StatsMachine - Main";
 }
 
-<div id="data_avatar" data-value="@Session["UserName"]"></div>
-<div id="data_avatar" data-value="@Session["UserFirstName"]"></div>
-<div id="data_avatar" data-value="@Session["UserLastName"]"></div>
-<div id="data_avatar" data-value="@Session["UserAvatar"]"></div>
+<h1>@ViewBag.Title</h1>
 
-
-<div class="jumbotron">
-    <div id="userAvatar" style="display:inline-block"></div>
-    <div style="display:inline-block">
-        <h1>Welcome, @Model.firstname</h1>
-    </div>
-</div>
-
-<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script type="text/javascript" src="~/Scripts/Main.js"></script>
+@Html.Partial("UserInfoBox")
 

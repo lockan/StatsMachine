@@ -1,0 +1,23 @@
+﻿@model statsmachine.Models.UserViewModel
+
+@{
+    ViewBag.UserName = Model.username;
+    ViewBag.UserFirstName = Model.firstname;
+    ViewBag.UserLastName = Model.lastname;       
+    ViewBag.AvatarPath = Helpers.GetImgPath(Model.avatar);
+}
+
+<div class="jumbotron">
+    <div id="userAvatar" style="display:inline-block">
+        <img src=@ViewBag.AvatarPath />
+    </div>
+    <div style="display:inline-block">
+        <h1>Welcome, @Model.firstname</h1>
+    </div>
+</div>
+
+<!-- data divs in case they're needed by javascript -->
+<div id="data_username" data-value="@Session["UserName"]"></div>
+<div id="data_firstname" data-value="@Session["UserFirstName"]"></div>
+<div id="data_lastname" data-value="@Session["UserLastName"]"></div>
+<div id="data_avatar" data-value="@Session["UserAvatar"]"></div>

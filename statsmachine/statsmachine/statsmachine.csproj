@@ -246,7 +246,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\Main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\respond.js" />
@@ -302,6 +301,8 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Users\Roles.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\UserInfoBox.cshtml" />
+    <Content Include="Views\Home\Legal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

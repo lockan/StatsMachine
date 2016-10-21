@@ -52,9 +52,9 @@ namespace statsmachine
             return allroles;
         }
 
-        public static string GetAvatarPath(string avatar)
+        public static string GetImgPath(string imgname)
         {
-            return String.Format("//Content//Images//{0}.png", avatar);
+            return String.Format("/Content/Images/{0}.png", imgname.ToLower());
         }
     }
 }
