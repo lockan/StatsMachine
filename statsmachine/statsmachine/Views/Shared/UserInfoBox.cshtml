@@ -3,13 +3,12 @@
 @{
     ViewBag.UserName = Model.username;
     ViewBag.UserFirstName = Model.firstname;
-    ViewBag.UserLastName = Model.lastname;       
-    ViewBag.AvatarPath = Helpers.GetImgPath(Model.avatar);
+    ViewBag.UserLastName = Model.lastname;
 }
 
 <div class="jumbotron">
     <div id="userAvatar" style="display:inline-block">
-        <img src=@ViewBag.AvatarPath />
+        @Html.Image(Model.iconpath, null, "user icon", null)
     </div>
     <div style="display:inline-block">
         <h1>Welcome, @Model.firstname</h1>

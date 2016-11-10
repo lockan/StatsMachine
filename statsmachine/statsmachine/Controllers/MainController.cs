@@ -20,7 +20,7 @@ namespace statsmachine.Controllers
         {
             ApplicationUser sessionuser = db.Users.Find(User.Identity.GetUserId());
             SetUserSessionData(sessionuser);
-            UserViewModel currentuser = Helpers.GetUserViewModel(sessionuser.Id);
+            UserViewModel currentuser = Utility.GetUserViewModel(sessionuser.Id);
             return View(currentuser);
         }
 

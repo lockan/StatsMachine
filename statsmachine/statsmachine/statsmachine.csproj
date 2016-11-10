@@ -178,7 +178,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Migrations\201608310344051_Genesis.cs" />
     <Compile Include="Migrations\201608310344051_Genesis.Designer.cs">
       <DependentUpon>201608310344051_Genesis.cs</DependentUpon>

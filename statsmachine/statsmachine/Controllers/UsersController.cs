@@ -28,7 +28,7 @@ namespace statsmachine.Controllers
             List<UserViewModel> userswithroles = new List<UserViewModel>();
             UserViewModel uvm;
             foreach (ApplicationUser u in users) {
-                uvm = Helpers.GetUserViewModel(u.Id);
+                uvm = Utility.GetUserViewModel(u.Id);
                 userswithroles.Add(uvm);
             }
 
@@ -158,14 +158,14 @@ namespace statsmachine.Controllers
                 roles.Add(role);
             }
 
-            UserViewModel uvm = Helpers.GetUserViewModel(applicationUser.Id);
+            UserViewModel uvm = Utility.GetUserViewModel(applicationUser.Id);
 
             List<string> allroles = new List<string>();
             foreach (var r in db.Roles)
             {
                 allroles.Add(r.Name);
             }
-            ViewBag.RolesList = Helpers.GetAvailableRoles();
+            ViewBag.RolesList = Utility.GetAvailableRoles();
 
             return View(uvm);
         }

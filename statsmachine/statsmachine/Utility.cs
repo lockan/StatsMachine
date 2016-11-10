@@ -8,8 +8,8 @@ using System.Web;
 
 namespace statsmachine
 {
-    //CONTAINS GLOBAL HELPER FUNCTIONS
-    public class Helpers
+    //CONTAINS GLOBAL UTILITY FUNCTIONS
+    public class Utility
     {
         private static ApplicationDbContext db = new ApplicationDbContext();
 
@@ -30,6 +30,7 @@ namespace statsmachine
             uvm.firstname = user.firstname;
             uvm.lastname = user.lastname;
             uvm.avatar = user.avatar;
+            uvm.iconpath = GetImgPath(user.avatar);
             uvm.username = user.UserName;
 
             uvm.roles = new List<string>();
@@ -52,6 +53,8 @@ namespace statsmachine
             return allroles;
         }
 
+        // Note: This should only be used if absolutely necessary. There are better ways. 
+        // Use Html.Image helper wherever possible. 
         public static string GetImgPath(string imgname)
         {
             return String.Format("/Content/Images/{0}.png", imgname.ToLower());

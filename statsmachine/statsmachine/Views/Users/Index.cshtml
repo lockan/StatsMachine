@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            <span>&nbsp;</span>
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.firstname)
         </th>
         <th>
@@ -28,6 +31,9 @@
 @foreach (var item in Model)
 {
     <tr>
+        <td>
+            @Html.Image(modelItem => item.iconpath, null, null, new { height = "25", width = "25"})
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.firstname)
         </td>

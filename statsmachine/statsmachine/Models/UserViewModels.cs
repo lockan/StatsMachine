@@ -9,7 +9,9 @@ namespace statsmachine.Models
         public string firstname { get; set; }
         public string lastname { get; set; }
         public string avatar { get; set; }
+        public string iconpath { get; set; }
         public string username { get; set; }
         public List<string> roles { get; set; }
+        
     }
 }
