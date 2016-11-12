@@ -1,0 +1,49 @@
+﻿@model statsmachine.Models.ChangeAvatarViewModel
+
+@{
+    ViewBag.Title = "Change Avatar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+@using (Html.BeginForm("ChangeAvatar", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Choose a new avatar:</h4>
+    <hr />
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.AvatarList, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(m => m.AvatarList, new { @class = "form-control", @id = "avatarchoice" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        @Html.Label("Preview", new { @class = "col-md-2 control-label" })
+        <div class="col-md-10" id="avatar">
+            <!-- image goes here -->
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(m => m.UserId)
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="ChangeAvatar" />
+        </div>
+    </div>
+}
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<script type="text/javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="~/Scripts/Register.js"></script>
+
+

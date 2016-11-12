@@ -7,14 +7,17 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using statsmachine.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace statsmachine.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        
 
         public ManageController()
         {
@@ -24,6 +27,7 @@ namespace statsmachine.Controllers
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            
         }
 
         public ApplicationSignInManager SignInManager
@@ -61,6 +65,7 @@ namespace statsmachine.Controllers
                 : message == ManageMessageId.Error ? "An error has occurred."
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                : message == ManageMessageId.AvatarChangeSuccess ? "Your avatar has been updated."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -70,8 +75,10 @@ namespace statsmachine.Controllers
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
+                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
+                UVModel = UVModel()
             };
+            
             return View(model);
         }
 
@@ -338,7 +345,56 @@ namespace statsmachine.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+         //
+        // GET: /Manage/ChangeAvatar
+        public ActionResult ChangeAvatar(UserViewModel model)
+        {
+            ChangeAvatarViewModel cavm = new ChangeAvatarViewModel
+            {
+                UserId = model.Id,
+                AvatarList = new Enums.WarmachineFaction()
+            };
+
+            return View(cavm);
+        }
+
+        //
+        // POST: /Manage/ChangeAvatar
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeAvatar(ChangeAvatarViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var ustore = new UserStore<ApplicationUser>(db);
+                var umanager = new UserManager<ApplicationUser>(ustore);
+                var user = umanager.FindById(model.UserId);
+                
+                if (user != null)
+                {
+                    user.avatar = model.AvatarList.ToString();
+                    var result = umanager.Update(user);
+                                                               
+                    if (result.Succeeded)
+                    {
+                        ustore.Context.SaveChanges();
+                        //TODO: Verify session update works
+                        //TODO: Also try remove this and see if it still works. (Changed the way we get the path, so we might not need the session data any longer.
+                        Session.Remove("UserAvatar");
+                        Session.Add("UserAvatar", user.avatar);
+                        //TODO: Verify iconpath is updating on the redirect to index. 
+
+                        return RedirectToAction("Index", new { Message = ManageMessageId.AvatarChangeSuccess });
+                    }
+                    AddErrors(result);
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -386,7 +442,18 @@ namespace statsmachine.Controllers
             SetPasswordSuccess,
             RemoveLoginSuccess,
             RemovePhoneSuccess,
+            AvatarChangeSuccess,
             Error
+        }
+
+        private UserViewModel UVModel()
+        {
+            UserViewModel uvm = Utility.GetUserViewModel(User.Identity.GetUserId().ToString());
+            if (uvm != null)
+            {
+                return uvm;
+            }
+            return null;
         }
 
 #endregion

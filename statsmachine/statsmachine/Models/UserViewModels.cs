@@ -12,6 +12,5 @@ namespace statsmachine.Models
         public string iconpath { get; set; }
         public string username { get; set; }
         public List<string> roles { get; set; }
-        
     }
 }

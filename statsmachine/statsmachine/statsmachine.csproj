@@ -178,7 +178,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Utility.cs" />
+    <Compile Include="Helpers\Utility.cs" />
     <Compile Include="Helpers\ImageHelper.cs" />
     <Compile Include="Migrations\201608310344051_Genesis.cs" />
     <Compile Include="Migrations\201608310344051_Genesis.Designer.cs">
@@ -304,6 +304,7 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Shared\UserInfoBox.cshtml" />
     <Content Include="Views\Home\Legal.cshtml" />
+    <Content Include="Views\Manage\ChangeAvatar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
