@@ -24,13 +24,11 @@ namespace statsmachine.Controllers
             return View(currentuser);
         }
 
+        //TODO: Use session data for info box to reduce database calls
         private void SetUserSessionData(ApplicationUser sessionuser)
         {
-            //Set session variables
-            Session.Add("UserName", sessionuser.UserName);
-            Session.Add("UserFirstName", sessionuser.firstname);
-            Session.Add("UserLastName", sessionuser.lastname);
-            Session.Add("UserAvatar", sessionuser.avatar);
+            //Set session variables here
+
         }
 
     }

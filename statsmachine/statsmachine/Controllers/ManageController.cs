@@ -56,7 +56,7 @@ namespace statsmachine.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public ActionResult Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -72,12 +72,12 @@ namespace statsmachine.Controllers
             var model = new IndexViewModel
             {
                 HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId),
-                UVModel = UVModel()
-            };
+                PhoneNumber = UserManager.GetPhoneNumber(userId),
+                TwoFactor = UserManager.GetTwoFactorEnabled(userId),
+                Logins = UserManager.GetLogins(userId),
+                BrowserRemembered = AuthenticationManager.TwoFactorBrowserRemembered(userId),
+                UVModel = Utility.GetUserViewModel(userId)
+        };
             
             return View(model);
         }
@@ -114,9 +114,10 @@ namespace statsmachine.Controllers
             return View();
         }
         */
-        /*
+
         //
         // POST: /Manage/AddPhoneNumber
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -377,13 +378,7 @@ namespace statsmachine.Controllers
                                                                
                     if (result.Succeeded)
                     {
-                        ustore.Context.SaveChanges();
-                        //TODO: Verify session update works
-                        //TODO: Also try remove this and see if it still works. (Changed the way we get the path, so we might not need the session data any longer.
-                        Session.Remove("UserAvatar");
-                        Session.Add("UserAvatar", user.avatar);
-                        //TODO: Verify iconpath is updating on the redirect to index. 
-
+                        db.SaveChanges();
                         return RedirectToAction("Index", new { Message = ManageMessageId.AvatarChangeSuccess });
                     }
                     AddErrors(result);

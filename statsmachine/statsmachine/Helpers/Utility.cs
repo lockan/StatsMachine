@@ -16,10 +16,12 @@ namespace statsmachine
         //Returns a UserViewModel object given the user's ID
         public static UserViewModel GetUserViewModel(string userid)
         {
+            db = new ApplicationDbContext(); //Need to refresh the context, otherwise updates might return old data. 
             var userStore = new UserStore<ApplicationUser>(db);
             var userManager = new UserManager<ApplicationUser>(userStore);
-
+            
             ApplicationUser user = db.Users.Find(userid);
+
             if (user == null)
             {
                 return null;
@@ -45,6 +47,7 @@ namespace statsmachine
         //Retrieve and return List of all available roles
         public static List<string> GetAvailableRoles()
         {
+            db = new ApplicationDbContext();
             List<string> allroles = new List<string>();
             foreach (var r in db.Roles)
             {
