@@ -169,7 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\GamesController.cs" />
+    <Compile Include="Controllers\SupportedGamesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201609130852058_add-user-avatar.cs" />
     <Compile Include="Migrations\201609130852058_add-user-avatar.Designer.cs">
       <DependentUpon>201609130852058_add-user-avatar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611250652106_Rename_Games.cs" />
+    <Compile Include="Migrations\201611250652106_Rename_Games.Designer.cs">
+      <DependentUpon>201611250652106_Rename_Games.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -289,11 +293,11 @@
     <Content Include="Views\UserGames\Details.cshtml" />
     <Content Include="Views\UserGames\Edit.cshtml" />
     <Content Include="Views\UserGames\Index.cshtml" />
-    <Content Include="Views\Games\Create.cshtml" />
-    <Content Include="Views\Games\Delete.cshtml" />
-    <Content Include="Views\Games\Details.cshtml" />
-    <Content Include="Views\Games\Edit.cshtml" />
-    <Content Include="Views\Games\Index.cshtml" />
+    <Content Include="Views\SupportedGames\Create.cshtml" />
+    <Content Include="Views\SupportedGames\Delete.cshtml" />
+    <Content Include="Views\SupportedGames\Details.cshtml" />
+    <Content Include="Views\SupportedGames\Edit.cshtml" />
+    <Content Include="Views\SupportedGames\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -335,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609130852058_add-user-avatar.resx">
       <DependentUpon>201609130852058_add-user-avatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611250652106_Rename_Games.resx">
+      <DependentUpon>201611250652106_Rename_Games.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

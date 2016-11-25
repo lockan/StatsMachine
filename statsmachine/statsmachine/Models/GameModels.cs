@@ -8,7 +8,7 @@ using System.Web;
 namespace statsmachine.Models
 {
 
-    public class Game
+    public class SupportedGame
     {
         public Guid id { get; set; }
         public string name { get; set; }

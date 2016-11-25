@@ -11,14 +11,14 @@ using statsmachine.Models;
 namespace statsmachine.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class GamesController : Controller
+    public class SupportedGamesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.Games.ToList());
+            return View(db.SupportedGames.ToList());
         }
 
         // GET: Games/Details/5
@@ -28,7 +28,7 @@ namespace statsmachine.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
+            SupportedGame game = db.SupportedGames.Find(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -47,13 +47,15 @@ namespace statsmachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name")] Game game)
+        public ActionResult Create([Bind(Include = "id,name")] SupportedGame game)
         {
             if (ModelState.IsValid)
             {
                 game.id = Guid.NewGuid();
-                db.Games.Add(game);
+                db.SupportedGames.Add(game);
                 db.SaveChanges();
+
+                //TODO: Need to created a new table Games.{GameTitle}. 
                 return RedirectToAction("Index");
             }
 
@@ -67,7 +69,7 @@ namespace statsmachine.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
+            SupportedGame game = db.SupportedGames.Find(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -80,7 +82,7 @@ namespace statsmachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name")] Game game)
+        public ActionResult Edit([Bind(Include = "id,name")] SupportedGame game)
         {
             if (ModelState.IsValid)
             {
@@ -98,7 +100,7 @@ namespace statsmachine.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Game game = db.Games.Find(id);
+            SupportedGame game = db.SupportedGames.Find(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -111,9 +113,11 @@ namespace statsmachine.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Game game = db.Games.Find(id);
-            db.Games.Remove(game);
+            SupportedGame game = db.SupportedGames.Find(id);
+            db.SupportedGames.Remove(game);
             db.SaveChanges();
+            //TODO: Remove the table Games.{GameTitle} on deletion of a game. 
+            //NOTE: Doing so could be extrmely destructive. Would it be better to leave the stray database tables? 
             return RedirectToAction("Index");
         }
 
