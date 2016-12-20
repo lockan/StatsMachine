@@ -46,56 +46,60 @@ namespace statsmachine.Controllers
         // POST: Games/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id")] GameSystem game)
-        {
-            if (ModelState.IsValid)
-            {
-                db.GameSystems.Add(game);
-                db.SaveChanges();
-
-                //TODO: Need to created a new table Games.{GameTitle}. 
-                return RedirectToAction("Index");
-            }
-
-            return View(game);
-        }
-
-        // GET: Games/Edit/5
-/*
-                public ActionResult Edit(string id)
+        /*
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Create([Bind(Include = "id")] GameSystem game)
                 {
-                    if (id == null)
+                    if (ModelState.IsValid)
                     {
-                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                        // Add new game id to GameSystems table
+                        db.GameSystems.Add(game);
+
+                        db.SaveChanges();
+
+                        return RedirectToAction("Index");
                     }
-                    GameSystem game = db.GameSystems.Find(id);
-                    if (game == null)
-                    {
-                        return HttpNotFound();
-                    }
+
                     return View(game);
                 }
-*/
+        */
+
+        // GET: Games/Edit/5
+        /*
+                        public ActionResult Edit(string id)
+                        {
+                            if (id == null)
+                            {
+                                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                            }
+                            GameSystem game = db.GameSystems.Find(id);
+                            if (game == null)
+                            {
+                                return HttpNotFound();
+                            }
+                            return View(game);
+                        }
+        */
         // POST: Games/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-/*
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id")] GameSystem game)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(game).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(game);
-        }
-*/
+        /*
+                [HttpPost]
+                [ValidateAntiForgeryToken]
+                public ActionResult Edit([Bind(Include = "id")] GameSystem game)
+                {
+                    if (ModelState.IsValid)
+                    {
+                        db.Entry(game).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View(game);
+                }
+        */
         // GET: Games/Delete/5
+        /*
         public ActionResult Delete(string id)
         {
             if (id == null)
@@ -109,8 +113,9 @@ namespace statsmachine.Controllers
             }
             return View(game);
         }
-
+        */
         // POST: Games/Delete/5
+        /*
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
@@ -122,6 +127,7 @@ namespace statsmachine.Controllers
             //NOTE: Doing so could be extrmely destructive. Would it be better to leave the stray database tables? 
             return RedirectToAction("Index");
         }
+        */
 
         protected override void Dispose(bool disposing)
         {

@@ -4,10 +4,13 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Games - Index</h2>
-
+<h2>Game Systems - Index</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <div class="container">
+        <b>Admins: </b>Adding additional games to StatsMachine requires development work since there is no way to add a game dynamically under Entity Framework.
+        Please speak to a site developer if you wish to add additional game support.
+        <br /> <b>Developer:</b> Models, Controllers, Views must all be created and database must be migrated.
+    </div>
 </p>
 <table class="table">
     <tr>
@@ -21,9 +24,6 @@
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.id)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
         </td>
     </tr>
 }
