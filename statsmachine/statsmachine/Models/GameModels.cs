@@ -8,10 +8,9 @@ using System.Web;
 namespace statsmachine.Models
 {
 
-    public class SupportedGame
+    public class GameSystem
     {
-        public Guid id { get; set; }
-        public string name { get; set; }
+        public string id { get; set; }
     }
 
     public class UserGame
@@ -22,7 +21,7 @@ namespace statsmachine.Models
 
         [Key]
         [Column(Order = 1)]
-        public Guid gameid { get; set; }
+        public string gameid { get; set; }
 
     }
 

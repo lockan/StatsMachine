@@ -169,7 +169,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\SupportedGamesController.cs" />
+    <Compile Include="Controllers\GameSystemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -207,6 +207,14 @@
     <Compile Include="Migrations\201611250652106_Rename_Games.cs" />
     <Compile Include="Migrations\201611250652106_Rename_Games.Designer.cs">
       <DependentUpon>201611250652106_Rename_Games.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200504194_Game_Models_Refactor.cs" />
+    <Compile Include="Migrations\201612200504194_Game_Models_Refactor.Designer.cs">
+      <DependentUpon>201612200504194_Game_Models_Refactor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612200533568_Game_Models_Refactor1.cs" />
+    <Compile Include="Migrations\201612200533568_Game_Models_Refactor1.Designer.cs">
+      <DependentUpon>201612200533568_Game_Models_Refactor1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -293,11 +301,11 @@
     <Content Include="Views\UserGames\Details.cshtml" />
     <Content Include="Views\UserGames\Edit.cshtml" />
     <Content Include="Views\UserGames\Index.cshtml" />
-    <Content Include="Views\SupportedGames\Create.cshtml" />
-    <Content Include="Views\SupportedGames\Delete.cshtml" />
-    <Content Include="Views\SupportedGames\Details.cshtml" />
-    <Content Include="Views\SupportedGames\Edit.cshtml" />
-    <Content Include="Views\SupportedGames\Index.cshtml" />
+    <Content Include="Views\GameSystems\Create.cshtml" />
+    <Content Include="Views\GameSystems\Delete.cshtml" />
+    <Content Include="Views\GameSystems\Details.cshtml" />
+    <Content Include="Views\GameSystems\Edit.cshtml" />
+    <Content Include="Views\GameSystems\Index.cshtml" />
     <Content Include="Views\Users\Create.cshtml" />
     <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\Details.cshtml" />
@@ -342,6 +350,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611250652106_Rename_Games.resx">
       <DependentUpon>201611250652106_Rename_Games.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200504194_Game_Models_Refactor.resx">
+      <DependentUpon>201612200504194_Game_Models_Refactor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612200533568_Game_Models_Refactor1.resx">
+      <DependentUpon>201612200533568_Game_Models_Refactor1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

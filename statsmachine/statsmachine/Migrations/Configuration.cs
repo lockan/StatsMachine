@@ -59,8 +59,8 @@ namespace statsmachine.Migrations
             }
 
             // Seed Games Table
-            context.SupportedGames.AddOrUpdate(
-                g => g.name, new SupportedGame { name = "Warmachine" }
+            context.GameSystems.AddOrUpdate(
+                g => g.id, new GameSystem { id = "Warmachine" }
             );
         }
     }

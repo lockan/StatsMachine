@@ -11,31 +11,32 @@ using statsmachine.Models;
 namespace statsmachine.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class SupportedGamesController : Controller
+    public class GameSystemsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Games
         public ActionResult Index()
         {
-            return View(db.SupportedGames.ToList());
+            return View(db.GameSystems.ToList());
         }
 
         // GET: Games/Details/5
-        public ActionResult Details(Guid? id)
+/*
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SupportedGame game = db.SupportedGames.Find(id);
+            GameSystem game = db.GameSystems.Find(id);
             if (game == null)
             {
                 return HttpNotFound();
             }
             return View(game);
         }
-
+*/
         // GET: Games/Create
         public ActionResult Create()
         {
@@ -47,12 +48,11 @@ namespace statsmachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,name")] SupportedGame game)
+        public ActionResult Create([Bind(Include = "id")] GameSystem game)
         {
             if (ModelState.IsValid)
             {
-                game.id = Guid.NewGuid();
-                db.SupportedGames.Add(game);
+                db.GameSystems.Add(game);
                 db.SaveChanges();
 
                 //TODO: Need to created a new table Games.{GameTitle}. 
@@ -63,26 +63,28 @@ namespace statsmachine.Controllers
         }
 
         // GET: Games/Edit/5
-        public ActionResult Edit(Guid? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SupportedGame game = db.SupportedGames.Find(id);
-            if (game == null)
-            {
-                return HttpNotFound();
-            }
-            return View(game);
-        }
-
+/*
+                public ActionResult Edit(string id)
+                {
+                    if (id == null)
+                    {
+                        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                    }
+                    GameSystem game = db.GameSystems.Find(id);
+                    if (game == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(game);
+                }
+*/
         // POST: Games/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+/*
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,name")] SupportedGame game)
+        public ActionResult Edit([Bind(Include = "id")] GameSystem game)
         {
             if (ModelState.IsValid)
             {
@@ -92,15 +94,15 @@ namespace statsmachine.Controllers
             }
             return View(game);
         }
-
+*/
         // GET: Games/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SupportedGame game = db.SupportedGames.Find(id);
+            GameSystem game = db.GameSystems.Find(id);
             if (game == null)
             {
                 return HttpNotFound();
@@ -111,12 +113,12 @@ namespace statsmachine.Controllers
         // POST: Games/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            SupportedGame game = db.SupportedGames.Find(id);
-            db.SupportedGames.Remove(game);
+            GameSystem game = db.GameSystems.Find(id);
+            db.GameSystems.Remove(game);
             db.SaveChanges();
-            //TODO: Remove the table Games.{GameTitle} on deletion of a game. 
+            //TODO: Remove the table {game.id} on deletion of a game. 
             //NOTE: Doing so could be extrmely destructive. Would it be better to leave the stray database tables? 
             return RedirectToAction("Index");
         }
