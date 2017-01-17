@@ -11,17 +11,21 @@
 </p>
 <table class="table">
     <tr>
-        <th></th>
+        <th>@Html.DisplayNameFor(model => model.userid)</th>
+        <th>@Html.DisplayNameFor(model => model.gameid)</th>
+        <th><span>&nbsp;</span></th>
     </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.userid)</td>
+            <td>@Html.DisplayFor(modelItem => item.gameid)</td>
+            <td>
+                <span>&nbsp;</span>
+            </td>
+        </tr>
+    }
 
 </table>
+

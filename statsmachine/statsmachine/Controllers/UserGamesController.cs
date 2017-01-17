@@ -10,6 +10,7 @@ using statsmachine.Models;
 
 namespace statsmachine.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class UserGamesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -18,21 +19,6 @@ namespace statsmachine.Controllers
         public ActionResult Index()
         {
             return View(db.UserGames.ToList());
-        }
-
-        // GET: UserGames/Details/5
-        public ActionResult Details(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserGame userGame = db.UserGames.Find(id);
-            if (userGame == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userGame);
         }
 
         // GET: UserGames/Create
@@ -50,6 +36,15 @@ namespace statsmachine.Controllers
         {
             if (ModelState.IsValid)
             {
+                //Verify that both the user and game already exist in the database
+                bool usr = db.Users.Any(u => u.UserName.Equals(userGame.userid));
+                bool gm = db.GameSystems.Any(g => g.id.Equals(userGame.gameid));
+                if ( !usr || !gm ) return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid userid or gameid");
+
+                //Check for pre-existing entry
+                var ug = db.UserGames.Find(userGame.userid, userGame.gameid);
+                if (ug != null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "An entry matching that id combination already exists.");
+
                 db.UserGames.Add(userGame);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -58,61 +53,15 @@ namespace statsmachine.Controllers
             return View(userGame);
         }
 
-        // GET: UserGames/Edit/5
-        public ActionResult Edit(string id)
+        //TODO: Role this into an overloaded POST controller
+        private UserGame CreateUserGameLink(string userid, string gameid)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserGame userGame = db.UserGames.Find(id);
-            if (userGame == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userGame);
-        }
+            string userMail = db.Users.Find(userid).Email;
+            UserGame ug = new Models.UserGame();
+            ug.userid = userMail;
+            ug.gameid = gameid;
 
-        // POST: UserGames/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "userid,gameid")] UserGame userGame)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(userGame).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(userGame);
-        }
-
-        // GET: UserGames/Delete/5
-        public ActionResult Delete(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            UserGame userGame = db.UserGames.Find(id);
-            if (userGame == null)
-            {
-                return HttpNotFound();
-            }
-            return View(userGame);
-        }
-
-        // POST: UserGames/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
-        {
-            UserGame userGame = db.UserGames.Find(id);
-            db.UserGames.Remove(userGame);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            return ug;
         }
 
         protected override void Dispose(bool disposing)

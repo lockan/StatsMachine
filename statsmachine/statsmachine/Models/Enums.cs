@@ -27,6 +27,21 @@ namespace statsmachine.Models
             Skorne,
             Trollbloods
         }
+
+        public enum WarmachineGameResult
+        {
+            Win, 
+            Loss, 
+            Tie
+        }
+
+        public enum WarmachineResultType
+        {
+            Scenario,
+            Assassination,
+            DeathClock
+        }
+
     }
 
 }
