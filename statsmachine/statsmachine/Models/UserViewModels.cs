@@ -13,4 +13,11 @@ namespace statsmachine.Models
         public string username { get; set; }
         public List<string> roles { get; set; }
     }
+
+    public class UserGamesViewModel
+    {
+        public string Id { get; set; }
+        public string username { get; set; }
+        public string gameid { get; set; }
+    }
 }

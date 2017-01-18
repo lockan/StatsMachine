@@ -18,7 +18,18 @@ namespace statsmachine.Controllers
         // GET: UserGames
         public ActionResult Index()
         {
-            return View(db.UserGames.ToList());
+            List<UserGamesViewModel> usergames = new List<UserGamesViewModel>();
+            UserGamesViewModel ugvm; 
+            foreach (UserGame u in db.UserGames.ToList())
+            {
+                ugvm = new UserGamesViewModel();
+                ugvm.Id = u.userid;
+                ugvm.gameid = u.gameid;
+                ugvm.username = db.Users.Find(u.userid).UserName;
+                usergames.Add(ugvm);
+            }
+
+            return View(usergames);
         }
 
         // GET: UserGames/Create
@@ -32,36 +43,29 @@ namespace statsmachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "userid,gameid")] UserGame userGame)
+        public ActionResult Create([Bind(Include = "Id,gameid")] UserGamesViewModel userGame)
         {
             if (ModelState.IsValid)
             {
                 //Verify that both the user and game already exist in the database
-                bool usr = db.Users.Any(u => u.UserName.Equals(userGame.userid));
+                bool usr = db.Users.Any(u => u.Id.Equals(userGame.Id));
                 bool gm = db.GameSystems.Any(g => g.id.Equals(userGame.gameid));
                 if ( !usr || !gm ) return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid userid or gameid");
 
                 //Check for pre-existing entry
-                var ug = db.UserGames.Find(userGame.userid, userGame.gameid);
+                var ug = db.UserGames.Find(userGame.Id, userGame.gameid);
                 if (ug != null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "An entry matching that id combination already exists.");
 
-                db.UserGames.Add(userGame);
+                UserGame ugm = new Models.UserGame();
+                ugm.userid = userGame.Id;
+                ugm.gameid = userGame.gameid;
+                
+                db.UserGames.Add(ugm);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             return View(userGame);
-        }
-
-        //TODO: Role this into an overloaded POST controller
-        private UserGame CreateUserGameLink(string userid, string gameid)
-        {
-            string userMail = db.Users.Find(userid).Email;
-            UserGame ug = new Models.UserGame();
-            ug.userid = userMail;
-            ug.gameid = gameid;
-
-            return ug;
         }
 
         protected override void Dispose(bool disposing)
