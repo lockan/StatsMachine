@@ -13,7 +13,7 @@ namespace statsmachine.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201701170528234_Warmachine-data-model"; }
+            get { return "201701180630123_Warmachine-data-model"; }
         }
         
         string IMigrationMetadata.Source

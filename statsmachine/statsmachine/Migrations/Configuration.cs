@@ -14,6 +14,7 @@ namespace statsmachine.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(statsmachine.Models.ApplicationDbContext context)

@@ -1,0 +1,122 @@
+﻿@model statsmachine.Models.WarmachineGame
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Warmachine</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.player)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.player)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.faction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.faction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.result)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.resultType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resultType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.pointSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.pointSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.caster)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.caster)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.themeforce)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.themeforce)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objective)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objective)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.scenario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.scenario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.controlPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.controlPoints)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opponent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opponent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opponentCaster)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opponentCaster)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.opponentPoints)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.opponentPoints)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

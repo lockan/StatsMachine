@@ -1,0 +1,105 @@
+﻿@model IEnumerable<statsmachine.Models.WarmachineGame>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.player)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.faction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.result)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.resultType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pointSize)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.caster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.themeforce)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.objective)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.scenario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.controlPoints)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opponent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opponentCaster)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.opponentPoints)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.player)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.faction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.result)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resultType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pointSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.caster)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.themeforce)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.objective)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.scenario)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.controlPoints)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opponent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opponentCaster)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.opponentPoints)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -175,6 +175,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserGamesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\GameControllers\WarmachineController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,9 +217,13 @@
     <Compile Include="Migrations\201612200533568_Game_Models_Refactor1.Designer.cs">
       <DependentUpon>201612200533568_Game_Models_Refactor1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201701170528234_Warmachine-data-model.cs" />
-    <Compile Include="Migrations\201701170528234_Warmachine-data-model.Designer.cs">
-      <DependentUpon>201701170528234_Warmachine-data-model.cs</DependentUpon>
+    <Compile Include="Migrations\201701180630123_Warmachine-data-model.cs" />
+    <Compile Include="Migrations\201701180630123_Warmachine-data-model.Designer.cs">
+      <DependentUpon>201701180630123_Warmachine-data-model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701180654057_warmachine-model-changes-01.cs" />
+    <Compile Include="Migrations\201701180654057_warmachine-model-changes-01.Designer.cs">
+      <DependentUpon>201701180654057_warmachine-model-changes-01.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -314,6 +319,11 @@
     <Content Include="Views\Shared\UserInfoBox.cshtml" />
     <Content Include="Views\Home\Legal.cshtml" />
     <Content Include="Views\Manage\ChangeAvatar.cshtml" />
+    <Content Include="Views\Warmachine\Create.cshtml" />
+    <Content Include="Views\Warmachine\Delete.cshtml" />
+    <Content Include="Views\Warmachine\Details.cshtml" />
+    <Content Include="Views\Warmachine\Edit.cshtml" />
+    <Content Include="Views\Warmachine\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,8 +364,11 @@
     <EmbeddedResource Include="Migrations\201612200533568_Game_Models_Refactor1.resx">
       <DependentUpon>201612200533568_Game_Models_Refactor1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701170528234_Warmachine-data-model.resx">
-      <DependentUpon>201701170528234_Warmachine-data-model.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201701180630123_Warmachine-data-model.resx">
+      <DependentUpon>201701180630123_Warmachine-data-model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701180654057_warmachine-model-changes-01.resx">
+      <DependentUpon>201701180654057_warmachine-model-changes-01.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

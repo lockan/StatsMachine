@@ -26,7 +26,7 @@ namespace statsmachine.Models
 
     }
     
-    public class Warmachine {
+    public class WarmachineGame {
 
         [Required]
         public Guid id { get; set; }
@@ -35,7 +35,7 @@ namespace statsmachine.Models
         public string player { get; set;  }
 
         [Required]
-        public string faction { get; set; }
+        public Enums.WarmachineFaction faction { get; set; }
 
         [Required]
         public Enums.WarmachineGameResult result { get; set; }
@@ -56,6 +56,8 @@ namespace statsmachine.Models
         public int controlPoints { get; set; }
 
         public string opponent { get; set;  }
+
+        public Enums.WarmachineFaction opponentFaction { get;  set; }
 
         public string opponentCaster { get; set; }
 

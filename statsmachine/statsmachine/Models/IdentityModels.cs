@@ -41,5 +41,6 @@ namespace statsmachine.Models
 
         public System.Data.Entity.DbSet<statsmachine.Models.UserGame> UserGames { get; set; }
 
+        public System.Data.Entity.DbSet<statsmachine.Models.WarmachineGame> WarmachineGames { get; set; }
     }
 }
