@@ -18,6 +18,7 @@ namespace statsmachine.Models
     {
         public string Id { get; set; }
         public string username { get; set; }
-        public string gameid { get; set; }
+        public Enums.GameTitle gameid { get; set; }
     }
+
 }

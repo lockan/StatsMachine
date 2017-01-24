@@ -324,6 +324,7 @@
     <Content Include="Views\Warmachine\Details.cshtml" />
     <Content Include="Views\Warmachine\Edit.cshtml" />
     <Content Include="Views\Warmachine\Index.cshtml" />
+    <Content Include="Views\UserGames\Subscribe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
