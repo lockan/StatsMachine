@@ -43,7 +43,7 @@ namespace statsmachine.Models
         [Required]
         public Enums.WarmachineResultType resultType { get; set; }
 
-        public int pointSize { get; set; }
+        public int? pointSize { get; set; }
 
         public string caster { get; set; }
 
@@ -53,7 +53,7 @@ namespace statsmachine.Models
 
         public string scenario { get; set; }
 
-        public int controlPoints { get; set; }
+        public int? controlPoints { get; set; }
 
         public string opponent { get; set;  }
 
@@ -61,7 +61,7 @@ namespace statsmachine.Models
 
         public string opponentCaster { get; set; }
 
-        public int opponentPoints { get; set; }
+        public int? opponentPoints { get; set; }
 
     }
 

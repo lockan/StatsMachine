@@ -233,6 +233,10 @@
     <Compile Include="Migrations\201702020621406_warmachine_model_changes.Designer.cs">
       <DependentUpon>201702020621406_warmachine_model_changes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702020636511_warmachine-nullable-int-fields.cs" />
+    <Compile Include="Migrations\201702020636511_warmachine-nullable-int-fields.Designer.cs">
+      <DependentUpon>201702020636511_warmachine-nullable-int-fields.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enums.cs" />
@@ -385,6 +389,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702020621406_warmachine_model_changes.resx">
       <DependentUpon>201702020621406_warmachine_model_changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020636511_warmachine-nullable-int-fields.resx">
+      <DependentUpon>201702020636511_warmachine-nullable-int-fields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

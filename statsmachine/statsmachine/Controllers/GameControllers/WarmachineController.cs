@@ -50,7 +50,7 @@ namespace statsmachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,player,faction,result,resultType,pointSize,caster,themeforce,objective,scenario,controlPoints,opponent,opponentCaster,opponentPoints")] WarmachineGame warmachine)
+        public ActionResult Create([Bind(Include = "id,UserId,faction,result,resultType,pointSize,caster,themeforce,objective,scenario,controlPoints,opponent,opponentCaster,opponentPoints")] WarmachineGame warmachine)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +83,7 @@ namespace statsmachine.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,player,faction,result,resultType,pointSize,caster,themeforce,objective,scenario,controlPoints,opponent,opponentCaster,opponentPoints")] WarmachineGame warmachine)
+        public ActionResult Edit([Bind(Include = "id,UserId,faction,result,resultType,pointSize,caster,themeforce,objective,scenario,controlPoints,opponent,opponentCaster,opponentPoints")] WarmachineGame warmachine)
         {
             if (ModelState.IsValid)
             {
