@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using statsmachine.Models;
+using Microsoft.AspNet.Identity;
 
 namespace statsmachine.Controllers
 {
@@ -38,7 +39,10 @@ namespace statsmachine.Controllers
         // GET: Warmachine/Create
         public ActionResult Create()
         {
-            return View();
+            WarmachineGame wgvm = new WarmachineGame();
+            wgvm.UserId = User.Identity.GetUserId().ToString();
+            
+            return View(wgvm);
         }
 
         // POST: Warmachine/Create

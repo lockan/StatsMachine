@@ -225,10 +225,19 @@
     <Compile Include="Migrations\201701180654057_warmachine-model-changes-01.Designer.cs">
       <DependentUpon>201701180654057_warmachine-model-changes-01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702020535278_warmachine-player-to-UserId.cs" />
+    <Compile Include="Migrations\201702020535278_warmachine-player-to-UserId.Designer.cs">
+      <DependentUpon>201702020535278_warmachine-player-to-UserId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702020621406_warmachine_model_changes.cs" />
+    <Compile Include="Migrations\201702020621406_warmachine_model_changes.Designer.cs">
+      <DependentUpon>201702020621406_warmachine_model_changes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="Models\GameModels.cs" />
+    <Compile Include="Models\GameViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserViewModels.cs" />
@@ -370,6 +379,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701180654057_warmachine-model-changes-01.resx">
       <DependentUpon>201701180654057_warmachine-model-changes-01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020535278_warmachine-player-to-UserId.resx">
+      <DependentUpon>201702020535278_warmachine-player-to-UserId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702020621406_warmachine_model_changes.resx">
+      <DependentUpon>201702020621406_warmachine_model_changes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

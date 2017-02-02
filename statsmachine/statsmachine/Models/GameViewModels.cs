@@ -1,38 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace statsmachine.Models
 {
-
-    public class GameSystem
+    public class WarmachineGameViewModel
     {
-        public string id { get; set; }
-    }
-
-    public class UserGame
-    {
-
-        [Key]
-        [Column(Order = 0)]
-        public string userid { get; set; }
-
-        [Key]
-        [Column(Order = 1)]
-        public string gameid { get; set; }
-
-    }
-    
-    public class WarmachineGame {
-
+        
         [Required]
-        public Guid id { get; set; }
-
-        [Required]
-        public string UserId { get; set;  }
+        public string UserId { get; set; }
 
         [Required]
         public Enums.WarmachineFaction faction { get; set; }
@@ -55,14 +30,12 @@ namespace statsmachine.Models
 
         public int controlPoints { get; set; }
 
-        public string opponent { get; set;  }
+        public string opponent { get; set; }
 
-        public Enums.WarmachineFaction opponentFaction { get;  set; }
+        public Enums.WarmachineFaction opponentFaction { get; set; }
 
         public string opponentCaster { get; set; }
 
         public int opponentPoints { get; set; }
-
     }
-
 }
