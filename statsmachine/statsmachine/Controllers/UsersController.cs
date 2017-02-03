@@ -214,6 +214,44 @@ namespace statsmachine.Controllers
             base.Dispose(disposing);
         }
 
+        //========= STATIC METHODS FOR GETTING USER DATA ==========
+
+        public static string getFullNameFromId(string userid)
+        {
+            if (String.IsNullOrEmpty(userid)) return null;
+
+            UsersController uc = new UsersController();
+            ApplicationUser usearched = uc.db.Users.Find(userid);
+            return (usearched != null) ? String.Format("{0} {1}", usearched.firstname, usearched.lastname) : null;
+        }
+        
+        public static string findOpponentId(string searchstring)
+        {
+            if (String.IsNullOrEmpty(searchstring)) return null;
+
+            UsersController uc = new UsersController();
+            string foundId = null;
+
+            //Do we already have a userid? 
+            if (uc.db.Users.Find(searchstring) != null) 
+            {
+                foundId = searchstring;
+            }
+            //If there's a space, assume it's a full name. 
+            else if (searchstring.Contains(' '))
+            {
+                string fn = searchstring.Split(' ')[0];
+                string ln = searchstring.Split(' ')[1];
+                foundId = uc.db.Users.FirstOrDefault(u => u.firstname.Equals(fn) && u.lastname.Equals(ln) ).Id;
+            } 
+            //If it contains an ampersand look for an e-mail. 
+            else if (searchstring.Contains('@'))
+            {
+                foundId = uc.db.Users.FirstOrDefault(u => u.UserName == searchstring).Id;
+            }
+
+            return (foundId != null) ? foundId : null;
+        }
         
     }
 }

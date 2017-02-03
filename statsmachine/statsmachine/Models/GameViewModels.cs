@@ -3,39 +3,62 @@ using System.ComponentModel.DataAnnotations;
 
 namespace statsmachine.Models
 {
-    public class WarmachineGameViewModel
+    public class WarmachineGameLimitedViewModel
     {
-        
-        [Required]
+        public string gameid { get; set; }
+
         public string UserId { get; set; }
 
-        [Required]
+        public string playername { get; set; }
+
         public Enums.WarmachineFaction faction { get; set; }
 
-        [Required]
-        public Enums.WarmachineGameResult result { get; set; }
+        public string armyicon { get; set; }
 
-        [Required]
-        public Enums.WarmachineResultType resultType { get; set; }
+        public string opponentId { get; set; }
 
-        public int pointSize { get; set; }
-
-        public string caster { get; set; }
-
-        public string themeforce { get; set; }
-
-        public string objective { get; set; }
-
-        public string scenario { get; set; }
-
-        public int controlPoints { get; set; }
-
-        public string opponent { get; set; }
+        public string opponentname { get; set; }
 
         public Enums.WarmachineFaction opponentFaction { get; set; }
 
+        public string enemyicon { get; set; }
+
+        public Enums.WarmachineGameResult result { get; set; }
+
+    }
+
+    public class WarmachineGameViewModel
+    {
+        public string gameid { get; set; }
+
+        public string UserId { get; set; }
+        
+        public string playername { get; set; }
+
+        public Enums.WarmachineFaction faction { get; set; }
+
+        public string armyicon { get; set; }
+
+        public string opponentId { get; set; }
+
+        public string opponentname { get; set; }
+
+        public Enums.WarmachineFaction opponentFaction { get; set; }
+
+        public string enemyicon { get; set; }
+
+        public int? pointSize { get; set; }
+
+        public Enums.WarmachineGameResult result { get; set; }
+
+        public Enums.WarmachineResultType resultType { get; set; }
+
+        public string scenario { get; set; }
+
+        public int? controlPoints { get; set; }
+
         public string opponentCaster { get; set; }
 
-        public int opponentPoints { get; set; }
+        public int? opponentPoints { get; set; }
     }
 }

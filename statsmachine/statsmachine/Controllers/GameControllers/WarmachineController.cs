@@ -18,7 +18,15 @@ namespace statsmachine.Controllers
         // GET: Warmachine
         public ActionResult Index()
         {
-            return View(db.WarmachineGames.ToList());
+            List<WarmachineGameLimitedViewModel> wmgvList = new List<Models.WarmachineGameLimitedViewModel>();
+            WarmachineGameLimitedViewModel nextViewModel = new WarmachineGameLimitedViewModel();
+            foreach (WarmachineGame gm in db.WarmachineGames.ToList())
+            {
+                nextViewModel = getLimitedViewModel(gm);
+                wmgvList.Add(nextViewModel);
+            }
+            
+            return View(wmgvList);
         }
 
         // GET: Warmachine/Details/5
@@ -127,6 +135,26 @@ namespace statsmachine.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private WarmachineGameLimitedViewModel getLimitedViewModel(WarmachineGame wgm)
+        {
+            WarmachineGameLimitedViewModel wmglvm = new WarmachineGameLimitedViewModel();
+            wmglvm.gameid = wgm.id.ToString();
+            wmglvm.UserId = wgm.UserId;
+            wmglvm.playername = UsersController.getFullNameFromId(wgm.UserId);
+            wmglvm.faction = wgm.faction;
+            wmglvm.armyicon = Utility.GetImgPath(wgm.faction.ToString());
+            wmglvm.opponentFaction = wgm.opponentFaction;
+            wmglvm.enemyicon = Utility.GetImgPath(wgm.opponentFaction.ToString());
+            wmglvm.result = wgm.result;
+
+            //Opponent Handling - try and match up the ids to names if possible.  
+            wmglvm.opponentId = UsersController.findOpponentId(wgm.opponent);
+            string oppname = UsersController.getFullNameFromId(wmglvm.opponentId);
+            wmglvm.opponentname = String.IsNullOrEmpty(oppname) ? wgm.opponent : oppname;
+            
+            return wmglvm;
         }
     }
 }
