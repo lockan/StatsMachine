@@ -1,59 +1,16 @@
-﻿@model IEnumerable<statsmachine.Models.WarmachineGameLimitedViewModel>
+﻿@model statsmachine.Models.UserViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Warmachine - Index";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.playername)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.armyicon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.opponentname)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.enemyicon)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.result)
-        </th>
-        <th>
-            Actions
-        </th>
-    </tr>
+<h2>Debug Menu:</h2>
+<h4>Game Filter goes here ...</h4>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(Model => item.playername)
-        </td>
-        <td>
-            @Html.Image(Model => item.armyicon, null, null, new { height = "25", width = "25" })
-        </td>
-        <td>
-            @Html.DisplayFor(Model => item.opponentname)
-        </td>
-        <td>
-            @Html.Image(Model => item.enemyicon, null, null, new { height = "25", width = "25" })
-        </td>
-        <td>
-            @Html.DisplayFor(Model => item.result)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.gameid }) |
-            @Html.ActionLink("Details", "Details", new { id=item.gameid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.gameid })
-        </td>
-    </tr>
-}
-
-</table>
+<ul>
+    <li>@Html.ActionLink("My Games", "Games", "Warmachine", new { userid = Model.Id}, null)</li>
+    <li>@Html.ActionLink("All Games", "Games", "Warmachine", new { }, null)</li>
+    <li>@Html.ActionLink("Log Warmachine Game", "Create", "Warmachine", new { }, null)</li>
+</ul>

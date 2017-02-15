@@ -11,21 +11,39 @@ using Microsoft.AspNet.Identity;
 
 namespace statsmachine.Controllers
 {
+    [Authorize]
     public class WarmachineController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Warmachine
+        // GET: Warmachine  -- Shows games for current user only. 
         public ActionResult Index()
         {
+            UserViewModel uvm = Utility.GetUserViewModel(User.Identity.GetUserId().ToString());
+            return View(uvm);
+        }
+
+        // GET: Warmachine -- Show games for all users
+        public ActionResult Games(string userid = null)
+        {
+            List<WarmachineGame> filteredlist = new List<WarmachineGame>();
             List<WarmachineGameLimitedViewModel> wmgvList = new List<Models.WarmachineGameLimitedViewModel>();
             WarmachineGameLimitedViewModel nextViewModel = new WarmachineGameLimitedViewModel();
-            foreach (WarmachineGame gm in db.WarmachineGames.ToList())
+
+            if (String.IsNullOrEmpty(userid)) {
+                filteredlist = db.WarmachineGames.ToList();
+            } 
+            else
+            {
+                filteredlist = db.WarmachineGames.Where(gm => gm.UserId.Equals(userid)).ToList();
+            }
+
+            foreach (WarmachineGame gm in filteredlist)
             {
                 nextViewModel = getLimitedViewModel(gm);
                 wmgvList.Add(nextViewModel);
             }
-            
+
             return View(wmgvList);
         }
 

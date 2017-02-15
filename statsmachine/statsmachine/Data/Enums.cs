@@ -14,6 +14,7 @@ namespace statsmachine.Models
 
         public enum WarmachineFaction
         {
+            None,
             Circle,
             Convergence,
             Cryx,

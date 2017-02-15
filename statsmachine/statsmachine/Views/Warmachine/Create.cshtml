@@ -102,6 +102,14 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.opponentFaction, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.opponentFaction, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.opponentFaction, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.opponentCaster, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.opponentCaster, new { htmlAttributes = new { @class = "form-control" } })
